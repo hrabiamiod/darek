@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+                    <!-- Coding By CodingNepal - codingnepalweb.com -->
+                    <html lang="en" dir="ltr">
+                      <head>
+                        <meta charset="UTF-8" />
+                        <title>Image Gallery with Lightbox | CodingLab</title>
+                        <link rel="stylesheet" href="style.css" />
+                        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+                        <!-- Fontawesome CDN Link -->
+                        <link
+                          rel="stylesheet"
+                          href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+                        />
+                      </head>
+                      <body>
+
+                        
+                        <div class="g_sekcja">
+                        <!--Okno lightboxa-->
+                          <div class="lightBox">
+                            <div class="lightBox_content">
+                                <span class="iks close">&#10005;</span>
+                              <div class="showImg">
+                                <div class="image">
+                                  <img src="images/img1.jpg" alt="" />
+                                </div>
+                              </div>
+                            </div>
+                          </div>
+                        <!-- koniec okna lihghtboxa-->
+                    
+                        <!-- start galerii-->
+                        <div class="image-gallery">
+                            <div class="image-container">
+                            <div class="image-box">
+                                <img class="gImg" src="https://zdroweogrzewanie.pl/userdata/public/assets/images/aranzacje/pokoj-dzieciecy/pokoj_dzieciecy_001.jpg" alt="" />
+                            </div>
+                        
+                            <div class="image-box">
+                                <img class="gImg" src="https://zdroweogrzewanie.pl/userdata/public/assets/images/aranzacje/pokoj-dzieciecy/pokoj_dzieciecy_002.jpg" alt="" />
+                            </div>
+                        
+                            <div class="image-box">
+                                <img class="gImg" src="https://zdroweogrzewanie.pl/userdata/public/assets/images/aranzacje/pokoj-dzieciecy/pokoj_dzieciecy_003.jpg" alt="" />
+                            </div>
+                        
+                            <div class="image-box">
+                                <img class="gImg" src="https://zdroweogrzewanie.pl/userdata/public/assets/images/aranzacje/pokoj-dzieciecy/pokoj_dzieciecy_004.jpg" alt="" />
+                            </div>
+                        
+                            <div class="image-box">
+                                <img class="gImg" src="https://zdroweogrzewanie.pl/userdata/public/assets/images/aranzacje/pokoj-dzieciecy/pokoj_dzieciecy_005.jpg" alt="" />
+                            </div>
+                                </div>
+                </div>
+                  </div>
+                </div>
+                <script>
+                  let body = document.querySelector("body"),
+                    lightBox = document.querySelector(".lightBox"),
+                    img = document.querySelectorAll(".gImg"),
+                    showImg = lightBox.querySelector(".showImg img"),
+                    close = lightBox.querySelector(".close");
+                  for (let image of img) {
+                    image.addEventListener("click", () => {
+                      showImg.src = image.src;
+                      lightBox.style.display = "block";
+                      body.style.overflow = "hidden";
+                      close.onclick = () => {
+                        lightBox.style.display = "none";
+                        body.style.overflow = "visible";
+                      };
+                    });
+                  }
+                </script>

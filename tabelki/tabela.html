@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Responsive Table</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+    }
+    .spec_table {
+        width: 1000px;
+        border-collapse: collapse;
+        margin-bottom: 20px;
+    }
+    .spec_th, .spec_td {
+        padding: 10px;
+        text-align: left;
+        border-bottom: 1px solid #ddd;
+    }
+    .spec_th {
+        background-color: #fff;
+        font-weight: bold;
+    }
+    .spec_even {
+        background-color: #f2f2f2;
+    }
+    @media only screen and (max-width: 600px) {
+        .spec_table, .spec_thead, .spec_tbody, .spec_th, .spec_td, .spec_tr {
+            display: block;
+        }
+        .spec_thead .spec_tr {
+            position: absolute;
+            top: -9999px;
+            left: -9999px;
+        }
+        .spec_tr {
+            margin-bottom: 15px;
+        }
+        .spec_td {
+            border: none;
+            position: relative;
+            padding-left: 50%;
+        }
+        .spec_td:before {
+            position: absolute;
+            left: 6px;
+            font-weight: bold;
+        }
+    }
+</style>
+</head>
+<body>
+
+<table class="spec_table">
+    <thead class="spec_thead">
+        <tr class="spec_tr">
+            <th class="spec_th">Kod produktu</th>
+            <th class="spec_th">Wymiar (cm)</th>
+            <th class="spec_th">Moc (W)</th>
+            <th class="spec_th">Natężenie (A)</th>
+            <th class="spec_th">Waga (kg)</th>
+            <th class="spec_th">Dedykowany do pomieszczeń (m3)</th>
+        </tr>
+    </thead>
+    <tbody class="spec_tbody">
+        <tr class="spec_tr spec_even">
+            <td class="spec_td">Data 1</td>
+            <td class="spec_td">Data 2</td>
+            <td class="spec_td">Data 3</td>
+            <td class="spec_td">Data 4</td>
+            <td class="spec_td">Data 5</td>
+            <td class="spec_td">Data 6</td>
+        </tr>
+        <tr class="spec_tr">
+            <td class="spec_td">Data 1</td>
+            <td class="spec_td">Data 2</td>
+            <td class="spec_td">Data 3</td>
+            <td class="spec_td">Data 4</td>
+            <td class="spec_td">Data 5</td>
+            <td class="spec_td">Data 6</td>
+        </tr>
+        <tr class="spec_tr spec_even">
+            <td class="spec_td">Data 1</td>
+            <td class="spec_td">Data 2</td>
+            <td class="spec_td">Data 3</td>
+            <td class="spec_td">Data 4</td>
+            <td class="spec_td">Data 5</td>
+            <td class="spec_td">Data 6</td>
+        </tr>
+        <!-- Add more rows as needed -->
+    </tbody>
+</table>
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generator galerii</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+
+        #output textarea {
+            width: 100%;
+            height: 300px;
+        }
+
+        footer {
+            margin-top: 40px;
+            text-align: center;
+            font-style: italic;
+            color: #888;
+            opacity: 0.2;
+        }
+        
+        button {
+            margin-top: 10px;
+            padding: 8px 16px;
+            cursor: pointer;
+        }
+
+        #copyMessage {
+            color: green;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+    </style>
+</head>
+<body>
+
+    <h1>Generator galerii</h1>
+    <p>Wrzuć plik txt z linkami</p>
+
+    <input type="file" id="fileInput" accept=".txt" onchange="generateHTML()" />
+    <div id="output">
+        <textarea id="generatedCode" readonly></textarea>
+        <button onclick="copyToClipboard()">Copy code</button>
+        <div id="copyMessage"></div>
+        </div>
+    <footer>
+        ;-)
+    </footer>
+    <script>
+        function generateHTML() {
+            const fileInput = document.getElementById('fileInput');
+            const file = fileInput.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const linksArray = e.target.result.trim().split('\n');
+
+                    const htmlCode = linksArray.map(link => {
+                        return `
+                            <div class="image-box">
+                                <img class="gImg" src="${link.trim()}" alt="" />
+                            </div>
+                        `;
+                    }).join('');
+
+                    const firstPart = `<div class="g_sekcja"><!--Okno lightboxa-->
+                        <div class="lightBox">
+                        <div class="lightBox_content"><span class="iks close">✕</span>
+                        <div class="showImg">
+                        <div class="image"><img src="/images/img1.jpg" alt="" /></div>
+                        </div>
+                        </div>
+                        </div>
+                        <!-- koniec okna lihghtboxa--> <!-- start galerii-->
+                        <div class="image-gallery">
+                        <div class="image-container">`;
+                    const secondPart = `        <\/div>
+                <\/div>
+                <\/div>
+                <script>// <![CDATA[
+                let body = document.querySelector("body"),
+                                    lightBox = document.querySelector(".lightBox"),
+                                    img = document.querySelectorAll(".gImg"),
+                                    showImg = lightBox.querySelector(".showImg img"),
+                                    close = lightBox.querySelector(".close");
+                                  for (let image of img) {
+                                    image.addEventListener("click", () => {
+                                      showImg.src = image.src;
+                                      lightBox.style.display = "block";
+                                      body.style.overflow = "hidden";
+                                      close.onclick = () => {
+                                        lightBox.style.display = "none";
+                                        body.style.overflow = "visible";
+                                      };
+                                    });
+                                  }
+                // ]]><\/script>`;
+
+                    const generatedCodeTextarea = document.getElementById('generatedCode');
+                    generatedCodeTextarea.value = firstPart + htmlCode + secondPart;
+                };
+
+                reader.readAsText(file);
+            } else {
+                alert('Please select a valid text file.');
+            }
+        }
+
+        function copyToClipboard() {
+            const generatedCodeTextarea = document.getElementById('generatedCode');
+            generatedCodeTextarea.select();
+
+            try {
+                document.execCommand('copy');
+                document.getElementById('copyMessage').textContent = 'Code copied to clipboard!';
+            } catch (err) {
+                console.error('Unable to copy to clipboard', err);
+                document.getElementById('copyMessage').textContent = 'Copying to clipboard is not supported in this browser. Please copy manually.';
+            }
+        }
+    </script>
+</body>
+</html>
