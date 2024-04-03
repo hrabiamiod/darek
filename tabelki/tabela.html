@@ -9,7 +9,7 @@
         font-family: Arial, sans-serif;
     }
     .spec_table {
-        width: 1000px;
+        width: 100%;
         border-collapse: collapse;
         margin-bottom: 20px;
     }
@@ -25,27 +25,15 @@
     .spec_even {
         background-color: #f2f2f2;
     }
+
+    /* Responsive Styling */
     @media only screen and (max-width: 600px) {
-        .spec_table, .spec_thead, .spec_tbody, .spec_th, .spec_td, .spec_tr {
-            display: block;
+        .spec_table {
+            width: 100%;
         }
-        .spec_thead .spec_tr {
-            position: absolute;
-            top: -9999px;
-            left: -9999px;
-        }
-        .spec_tr {
-            margin-bottom: 15px;
-        }
-        .spec_td {
-            border: none;
-            position: relative;
-            padding-left: 50%;
-        }
-        .spec_td:before {
-            position: absolute;
-            left: 6px;
-            font-weight: bold;
+        .spec_th, .spec_td {
+            padding: 5px;
+            font-size: 12px;
         }
     }
 </style>
